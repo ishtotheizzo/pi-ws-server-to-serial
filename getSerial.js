@@ -1,14 +1,18 @@
-const SerialPort = require('serialport')
-const port = new SerialPort('/dev/ttyGS0')
+var SerialPort = require("serialport").SerialPort;
+var serialPort = new SerialPort("/dev/ttyACM0", {
+  baudrate: 9600
+});
 
-port.write('main screen turn on', function(err) {
-  if (err) {
-    return console.log('Error on write: ', err.message)
-  }
-  console.log('message written')
-})
+serialPort.on("open", function () {
+  console.log('open');
 
-// Open errors will be emitted as an error event
-port.on('error', function(err) {
-  console.log('Error: ', err.message)
-})
+  serialPort.on('data', function(data) {
+    console.log('data received: ' + data);
+  });
+
+  serialPort.write(new Buffer('4','ascii'), function(err, results) {
+    console.log('err ' + err);
+    console.log('results ' + results);
+  });
+});
+
