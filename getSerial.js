@@ -1,12 +1,14 @@
-const raspi = require('raspi');
-const Serial = require('raspi-serial').Serial;
- 
-raspi.init(() => {
-  var serial = new Serial();
-  serial.open(() => {
-    serial.on('data', (data) => {
-      process.stdout.write(data);
-    });
-    serial.write('Hello from raspi-serial');
-  });
-});
+const SerialPort = require('serialport')
+const port = new SerialPort('/dev/ttyGS0')
+
+port.write('main screen turn on', function(err) {
+  if (err) {
+    return console.log('Error on write: ', err.message)
+  }
+  console.log('message written')
+})
+
+// Open errors will be emitted as an error event
+port.on('error', function(err) {
+  console.log('Error: ', err.message)
+})
