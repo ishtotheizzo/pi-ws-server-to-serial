@@ -9,7 +9,7 @@ var port = new SerialPort('/dev/ttyGS0', {
 
 
 function write(str){
-	port.write(str ,function(err){
+	port.write(str + '\n',function(err){
 		if(err){
 			console.log("e");
 		}
