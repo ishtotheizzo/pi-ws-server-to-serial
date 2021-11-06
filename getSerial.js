@@ -10,6 +10,15 @@ var port = new SerialPort('/dev/ttyGS0', {
 var ByteLength = require('@serialport/parser-byte-length');
 var parser = port.pipe(new ByteLength({length: 16}));
 
+function doSomething(){
+	port.write(new Date().getTime().toString(), function(err){
+		if(err){
+			console.log("e");
+		}
+	console.log("here");
+
+	})
+}
 
 parser.on('data', function (data) {
     var dataUTF8 = data.toString('utf-8');
@@ -18,3 +27,4 @@ parser.on('data', function (data) {
     }
 });
 
+setInterval(doSomething,1000);
