@@ -22,11 +22,6 @@ const express = require("express");
 const app = express();
 const WebSocket = require('ws')
 
-var MS = require("mongoskin");
-var db = MS.db("mongodb://localhost:27017/sensorData")
-
-
-
 const wss = new WebSocket.Server({ port: 3000})
 
 wss.on('connection', ws => {
