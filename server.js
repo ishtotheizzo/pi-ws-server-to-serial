@@ -18,8 +18,6 @@ function write(str){
 	})
 }
 
-const express = require("express");
-const app = express();
 const WebSocket = require('ws')
 
 const wss = new WebSocket.Server({ port: 3000})
