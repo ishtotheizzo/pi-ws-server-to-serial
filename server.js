@@ -32,7 +32,7 @@ const wss = new WebSocket.Server({ port: 3000})
 wss.on('connection', ws => {
   ws.on('message', message => {
 	var x = `${message}`;
-	  console.log(x)
+	//  console.log(x)
 	  write(x)
 	  try{
 		    db.collection("dataWS").insert(JSON.parse(x), function(err, result){
