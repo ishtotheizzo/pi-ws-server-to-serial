@@ -13,8 +13,6 @@ function write(str){
 		if(err){
 			console.log("e");
 		}
-	console.log("here");
-
 	})
 }
 
